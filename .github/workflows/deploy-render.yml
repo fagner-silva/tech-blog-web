@@ -24,7 +24,7 @@ jobs:
         run: npm run build
 
       - name: Deploy to Render
-        uses: render-examples/deploy-to-render-action@v1
-        with:
-          service-id: ${{ secrets.RENDER_SERVICE_ID }}
-          api-key: ${{ secrets.RENDER_API_KEY }}
+        env:
+          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          curl "$deploy_url"
